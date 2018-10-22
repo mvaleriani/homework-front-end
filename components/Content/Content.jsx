@@ -83,7 +83,7 @@ class Content extends React.Component{
         }
         return (
             <main id='content'>
-                <LoaderAnim />
+                
                 <div id='content-col-1' className='content-col' style={{ gridColumn: 1 }}>
                     {col1}
                 </div>
@@ -96,7 +96,7 @@ class Content extends React.Component{
                 <div id='content-col-4' className='content-col'>
                     {col4}
                 </div>
-                
+                {/* <LoaderAnim /> */}
             </main>
         );
     }

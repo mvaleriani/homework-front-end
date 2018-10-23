@@ -9,7 +9,6 @@ import { log } from 'util';
 class Content extends React.Component{
     constructor(props){
         super(props);
-        this.handleScroll = this.handleScroll.bind(this);
 
         this.state = {
             currentTab: 'trendingGIFComps',
@@ -20,7 +19,7 @@ class Content extends React.Component{
             search: [],
             fav: [],
         }
-        this.gifCols = [[],[],[],[]];
+        // this.gifCols = [[],[],[],[]];
         this.gifCols = {
             trending: [[], [], [], []],
             search: [[], [], [], []],
@@ -28,14 +27,6 @@ class Content extends React.Component{
         }
         
 
-    }
-
-    handleScroll(e){
-        
-    }
-
-    componentDidMount(){
-        
     }
 
     componentWillReceiveProps(newProps){

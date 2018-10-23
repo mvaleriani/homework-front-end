@@ -21,7 +21,8 @@ class GIFComp extends React.Component{
         };
     }
 
-    handleGIFClick(e){      
+    handleGIFClick(e){  
+        // debugger;    
         if (e.target.className === 'gif-prev') {
             this.setState({ componentOpen: true, heartStyle: this.state.heartStyle })
             window.addEventListener('resize', this.handleGIFCompResize)
@@ -52,18 +53,36 @@ class GIFComp extends React.Component{
         
         if (this.state.componentOpen) {
             let largeGIFHeight = (window.innerWidth * .9) * (this.props.gifData.images['original'].height) / (this.props.gifData.images['original'].width)
+            let title = this.props.gifData.title.split('by');
+            if(title.length === 1){
+                title = title.join(' ')
+            }else{
+                title = title.slice(0, title.length - 1).join(' ');
+            }
+            let username;
+            let avatar;
+            let userHref;
+            if(this.props.gifData.user){
+                username = this.props.gifData.username;
+                avatar = this.props.gifData.user.avatar_url;
+                userHref = this.props.gifData.user.profile_url;
+            }else{
+                username = 'unknown';
+            }
+            
             gifShow = (
                 <div className="gif-show" style={{ height: `${largeGIFHeight + 150}px`, maxHeight: 'fit-content'}}>
                     <img className="gif-large" src={this.props.gifData.images['original'].url} alt="" style={{ maxWidth: `${this.props.gifData.images['original'].width}px`, maxHeight: this.props.gifData.images['original'].height, width:'100%'}} />
+                    
                     <div className='gif-info' style={{ height: 'fit-content', width: '100%', maxWidth: `${this.props.gifData.images['original'].width}px`}}>
                         <a href={this.props.gifData.url} target="_blank" style={{ textDecoration: 'none', width: 'fit-content', maxWidth: '90%' }}><span className='gif-title'>
-                            {this.props.gifData.title.split('by').slice(0, -1).join(' ')}
+                            {title}
                         </span></a>
-                        <a href={this.props.gifData.user.profile_url} target="_blank" style={{ textDecoration: 'none', marginTop: '5px', display: 'flex', alignItems: 'center', width: 'fit-content' }}>
-                            <div style={{ height: '25px', width: '25px', borderRadius: '50%', backgroundImage: `url(${this.props.gifData.user.avatar_url})`, backgroundSize: 'cover', marginRight: '8px'}}></div>
+                        <a href={userHref} target="_blank" style={{ textDecoration: 'none', marginTop: '5px', display: 'flex', alignItems: 'center', width: 'fit-content' }}>
+                            <div style={{ height: '25px', width: '25px', borderRadius: '50%', backgroundImage: `url(${avatar})`, backgroundSize: 'cover', marginRight: '8px'}}></div>
 
                             <span className='gif-author' style={{ textDecoration: 'none' }}>
-                                {this.props.gifData.username}
+                                {username}
                             </span>
                         </a>
                         

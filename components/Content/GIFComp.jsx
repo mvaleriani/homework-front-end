@@ -49,7 +49,6 @@ class GIFComp extends React.Component{
 
     render(){
         let gifShow;
-
         
         if (this.state.componentOpen) {
             let largeGIFHeight = (window.innerWidth * .9) * (this.props.gifData.images['original'].height) / (this.props.gifData.images['original'].width)
